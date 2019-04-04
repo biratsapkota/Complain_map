@@ -1,0 +1,85 @@
+.mainreport_wrapper{
+	background-color:white;
+	padding:10px;
+	.report_header{
+		border-bottom: 1px solid gray;
+		.report_id{
+			padding:14px;
+			font-size:15px;
+			.report_number{
+				padding-left:10px;
+				font-style: italic;
+				color:red;
+				letter-spacing: 1px;
+				}
+			}
+			.report_head{
+				padding:14px;
+				font-size:25px;
+				font-weight:500;
+				color:purple;
+				letter-spacing: 1px;
+			}
+			.report_date{
+				display:flex;
+				padding:0 0 15px 30px;
+				.date_icon{
+					color:gray;
+				}
+				.date{
+					padding-left:14px;
+					letter-spacing: 0.5px;
+				}
+			}
+			.report_ward{
+				display:flex;
+				justify-content: space-between;
+				.ward_info{
+					display:flex;
+					padding:0 0 15px 30px;
+					letter-spacing: 0.5px;
+					.ward_icon{
+						color:gray;	
+					}
+					.ward{
+						padding-left:14px;
+					}
+				}
+				.report_type{
+					margin:-6px 0 10px 200px;
+					font-size:19px;
+					letter-spacing: 1px;
+					font-weight:500;
+					padding:6px 20px 6px 5px;
+					border-left:7px solid blue;
+				}
+			}
+		}
+		
+		.report_body{
+			display:flex;
+			.body_left{
+				.body_image{
+					background-image:url('https://res.cloudinary.com/dpy0mkwsp/image/upload/v1554292761/images/not-available.png');
+					height:300px;
+					width:300px;
+					background-position: center;
+					background-size:cover;
+					margin:50px;
+				}
+			}
+			.body_right{
+				.body_head{
+					padding:20px 0;
+					font-size:20px;
+					font-weight:500;
+					color:purple;
+				}
+				.body_info{
+					box-sizing:border-box;
+					width:400px;
+					color:gray;
+				}
+			}
+		}
+}

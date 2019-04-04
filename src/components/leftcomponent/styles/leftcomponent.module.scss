@@ -1,0 +1,17 @@
+.left_component_wrapper{
+    box-shadow: 21px 0px 5px 0px rgba(0,0,0,0.12);
+    z-index:9999;
+    .logo{
+        height:100px;
+        width:500px;
+    }
+    .tab_wrapper{
+        border-bottom:2px solid #686666;
+        display:flex;
+    }
+    .tab{
+        font-size:14px;
+        padding:10px 50px;
+        cursor: pointer;
+    }
+}

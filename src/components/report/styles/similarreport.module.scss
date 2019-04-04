@@ -1,0 +1,52 @@
+.similar_map_wrapper{
+	background-color:white;
+	margin-left:20px;
+	padding:10px;
+	.similar_map_head{
+		font-size:19px;
+		color:purple;
+		font-weight:550;
+		letter-spacing: 0.5px;  
+	}
+	.similar_map{
+		height:200px;
+		width:400px;
+		border:1px solid black;
+		margin-top:10px;
+	}
+}
+
+.similar_place_wrapper{
+	background-color:white;
+	margin:10px 0 0 20px;
+	padding: 20px 10px;
+	.similar_place_head{
+		font-size:19px;
+		color:purple;
+		font-weight:550;
+		letter-spacing: 0.5px;  
+	}
+	.similar_reports{
+		padding:10px;
+		cursor: pointer;
+		.similar_reports_info{
+			font-size:15px;
+			white-space: nowrap;
+			width:380px;
+			overflow: hidden;
+			text-overflow: ellipsis; 
+		}
+		.similar_place{
+			display:flex;
+			margin-top:5px;
+			color:orange;
+			font-size:15px;
+			.place_icon{				
+				margin-right:5px;
+			}
+		}
+		&:hover{
+			background-color:rgba(255, 0, 0, 0.061);
+		}
+	}
+}
