@@ -4,18 +4,6 @@ import styles from './styles/leftcomponent.module.scss';
 import { NavLink } from 'react-router-dom';
 
 class LeftComponent extends React.Component {
-	constructor(){
-		super();
-		this.state = {
-			active_tab_id:1,
-		}
-	}
-
-	activateTab = (id) =>{
-		this.setState({
-			active_tab_id:id,
-		})
-	}
 
 	render(){
 		let display = "";
@@ -23,7 +11,7 @@ class LeftComponent extends React.Component {
 		let bara_wrapper={};
 		let phalebas_wrapper={};
 		let godawari_wrapper={};
-		let { active_tab_id } = this.state;
+		let { active_tab_id,activateTab } = this.props;
 
 		if(active_tab_id === 1){
 			display=(<Statistics name="All" color="#ff7088" number="1756" />);
@@ -53,10 +41,10 @@ class LeftComponent extends React.Component {
 					/>
 				</NavLink>
 				<div className={styles.tab_wrapper}>
-					<div style={ all_wrapper } className={styles.tab} onClick={this.activateTab.bind(this,1)}>All</div>
-					<div style={ bara_wrapper } className={styles.tab} onClick={this.activateTab.bind(this,2)}>Bara</div>
-					<div style={ phalebas_wrapper } className={styles.tab} onClick={this.activateTab.bind(this,3)}>Phalebas</div>
-					<div style={ godawari_wrapper } className={styles.tab} onClick={this.activateTab.bind(this,4)}>Godawari</div>
+					<div style={ all_wrapper } className={styles.tab} onClick={activateTab.bind(this,1)}>All</div>
+					<div style={ bara_wrapper } className={styles.tab} onClick={activateTab.bind(this,2)}>Bara</div>
+					<div style={ phalebas_wrapper } className={styles.tab} onClick={activateTab.bind(this,3)}>Phalebas</div>
+					<div style={ godawari_wrapper } className={styles.tab} onClick={activateTab.bind(this,4)}>Godawari</div>
 				</div>
 
 				{display}

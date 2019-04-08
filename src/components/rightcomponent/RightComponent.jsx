@@ -50,32 +50,113 @@ class RightComponent extends React.Component{
     // }
     
 	render(){
-		const center_position = [28,84]
-		let locations=[
-			{
-				name:'location_1',
-				long:28,
-				lat:84.86986,
-			},
-			{
-				name:'location_2',
-				long:28,
-				lat:84.97986,
-			},
-			{
-				name:'location_3',
-				long:28.1,
-				lat:84.9687,
-			},
-			{
-				name:'location_4',
-				long:28.01,
-				lat:84.986986,
-			},
-		];
+		const {active_tab_id}=this.props;
+		let center_position;
+		let locations=[];
+		if (active_tab_id === 1){
+			locations=[
+				{
+					name:'location_1',
+					long:28,
+					lat:39.0111458605
+				},
+				{
+					name:'location_2',
+					long:28,
+					lat: 38.8410857803
+				},
+				{
+					name:'location_3',
+					long:28,
+					lat:38.9081784965,
+				},
+				{
+					name:'location_4',
+					long:28,
+					lat:38.9786336339,
+				},
+			];
+			center_position=[28,38.8410857803]
+		}
+		else if(active_tab_id === 2){
+			locations=[
+				{
+					name:'location_1',
+					long:28,
+					lat:84.86986,
+				},
+				{
+					name:'location_2',
+					long:28,
+					lat:84.97986,
+				},
+				{
+					name:'location_3',
+					long:28.1,
+					lat:84.9687,
+				},
+				{
+					name:'location_4',
+					long:28.01,
+					lat:84.986986,
+				},
+			];
+			center_position = [28,84.97986];
+		}
+		else if(active_tab_id === 3){
+			locations=[
+				{
+					name:'location_1',
+					long:28,
+					lat:39.0111458605
+				},
+				{
+					name:'location_2',
+					long:28,
+					lat: 38.8410857803
+				},
+				{
+					name:'location_3',
+					long:28,
+					lat:38.9081784965,
+				},
+				{
+					name:'location_4',
+					long:28,
+					lat:38.9786336339,
+				},
+			];
+			center_position=[28,38.8410857803]
+		}
+		else if(active_tab_id === 4){
+			locations=[
+				{
+					name:'location_1',
+					long:28,
+					lat:84.86986,
+				},
+				{
+					name:'location_2',
+					long:28,
+					lat:84.97986,
+				},
+				{
+					name:'location_3',
+					long:28.1,
+					lat:84.9687,
+				},
+				{
+					name:'location_4',
+					long:28.01,
+					lat:84.986986,
+				},
+			];
+			center_position = [28,84.97986];
+		}
+		 
 
 		let marker_display = locations.map(location =>{
-				let position = [location.long,location.lat]
+				let position = [location.long,location.lat];
 				return(
 					<Marker position={position}>
 						<Popup>
@@ -86,7 +167,7 @@ class RightComponent extends React.Component{
 			})
 		return(
 			<div>
-				<LeafletMap center={center_position} zoom={7} maxZoom={20} style={{height:'98.5vh',width:'57vw'}}>
+				<LeafletMap center={center_position} zoom={9} maxZoom={20} style={{height:'98.5vh',width:'57vw'}}>
 					<TileLayer
 						attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 						url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
