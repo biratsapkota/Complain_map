@@ -12,6 +12,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-keydown": "^1.9.8",
     "react-leaflet": "^2.2.1",
     "react-leaflet-markercluster": "^2.0.0-rc3",
     "react-redux": "^6.0.1",
@@ -37,5 +38,32 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.4.0"
+  },
+  "babel": {
+    "presets": ["module:metro-react-native-babel-preset"],
+    "env": {
+      "production": {
+      }
+    },
+    "plugins": [
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "legacy": true
+        }
+      ],
+      [
+        "transform-inline-environment-variables",
+        {
+          "include": ["NODE_ENV", "API"]
+        }
+      ],
+      [
+        "@babel/plugin-proposal-optional-catch-binding"
+      ]
+    ]
+  }
 }

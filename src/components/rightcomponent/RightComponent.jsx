@@ -1,54 +1,65 @@
 import React from 'react';
 import { Map as LeafletMap, TileLayer, Marker, Popup } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
+import styles from './styles/rightcomponent.module.scss'
 import 'react-leaflet-markercluster/dist/styles.min.css';
 
-//import L from 'leaflet';
-//import 'leaflet/dist/leaflet.css';
-//import styled from 'styled-components';
-
-// const Wrapper = styled.div`
-//     width:${props => props.width};
-//     height:${props => props.height};
-// `;
 
 class RightComponent extends React.Component{
+	constructor(){
+		super();
+		this.state = {
+			display_scroll:'none',
+			zoom:false,
+		}
+		this.handleKeyDown = this.handleKeyDown.bind(this);
+	}
 
-    // componentDidMount(){
-    //     this.map = L.map('map',{
-    //         center:[28,84],
-    //         zoom:7,
-    //     });
+	componentDidMount=()=> {
+		window.addEventListener('scroll',this.handleScroll);
+		setInterval(this.removeScroll, 5000);
+	}
 
-    //     var locations = [
-    //         ["LOCATION_1",28, 84],
-    //         ["LOCATION_2",28.2, 85],
-    //         ["LOCATION_3",28.1, 84],
-    //         ["LOCATION_4",28.1, 84],
-    //         ["LOCATION_5",28.01, 84]
-    //     ];
+	componentWillUnmount() {
+		window.removeEventListener('scroll', this.handleScroll);
+	};
 
-    //     let marker;
-        
-    //     var greenIcon = L.icon({
-    //         iconUrl: 'https://res.cloudinary.com/dpy0mkwsp/image/upload/v1554107443/pngs/icons8-marker-80.png',
-        
-    //         iconSize:[30, 30], // size of the icon
-    //      });
-        
-    //      for (var i = 0; i < locations.length; i++) {
-	// 				marker = new L.marker([locations[i][1],locations[i][2]], {icon: greenIcon})
-	// 				.bindPopup(locations[i][0])
-	// 				.addTo(this.map);
-    //     }
+	handleScroll=()=> {	
+		this.setState({
+			display_scroll:'block',
+			zoom:false,
+		});
+	}
 
-    //     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
-    //         detectRetina:true,
-    //         maxZoom: 20,
-    //         maxNativeZoom:17,
-    //     }).addTo(this.map);
-    // }
-    
+	hideScroll = () =>{
+		this.setState({
+			display_scroll:'none',
+			zoom:true,
+		})
+	}
+
+	removeScroll=()=>{
+		this.setState ({
+		  display_scroll:'none'
+		})
+	}
+
+	handleKeyDown=(event)=>{
+		console.log('fired',event)
+		if(event.key==='Control') {
+			this.setState({
+				display_scroll:'none',
+				zoom:true,
+			})
+			console.log('pressed')
+		}else{
+			this.setState({
+				display_scroll:'block',
+				zoom:false,
+			})
+		}		
+	}
+
 	render(){
 		const {active_tab_id}=this.props;
 		let center_position;
@@ -155,10 +166,10 @@ class RightComponent extends React.Component{
 		}
 		 
 
-		let marker_display = locations.map(location =>{
+		let marker_display = locations.map((location,index) =>{
 				let position = [location.long,location.lat];
 				return(
-					<Marker position={position}>
+					<Marker key={index} position={position}>
 						<Popup>
 							{location.name}
 						</Popup>
@@ -166,16 +177,19 @@ class RightComponent extends React.Component{
 				)
 			})
 		return(
-			<div>
-				<LeafletMap center={center_position} zoom={9} maxZoom={20} style={{height:'98.5vh',width:'57vw'}}>
+			<div onKeyPress={this.handleKeyDown}>
+				<LeafletMap center={center_position} zoom={9} maxZoom={20} style={{height:'100vh',width:'56vw'}} scrollWheelZoom={this.state.zoom} onScroll={this.hideScroll}>
 					<TileLayer
 						attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 						url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 					/>
 					<MarkerClusterGroup>
 						{marker_display}
-					</MarkerClusterGroup>					
+					</MarkerClusterGroup>				
 				</LeafletMap>
+				<div style={{display:this.state.display_scroll}} className={styles.on_scroll} >
+					<div className={styles.press}>Press ctrl + to zoom</div>
+				</div>
 			</div>
 		)
 	}

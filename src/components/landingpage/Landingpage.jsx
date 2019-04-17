@@ -19,10 +19,14 @@ class Landingpage extends React.Component {
 	
     render(){
 			return(
-				<div className={styles.landingpage}>
-					<LeftComponent activateTab={this.activateTab} active_tab_id={this.state.active_tab_id} />
-					<RightComponent active_tab_id={this.state.active_tab_id} />
+				<div>
+					<div className={styles.landingpage}>
+						<LeftComponent activateTab={this.activateTab} active_tab_id={this.state.active_tab_id} />
+						<RightComponent active_tab_id={this.state.active_tab_id} />
+					</div>
+					<div style={{height:'1000px'}}>wawaawwodjawodjwaodi</div>
 				</div>
+				
 			)
     }
 };
