@@ -1,25 +1,19 @@
-.leaflet_container {
-    height: 400px;
-    width: 80%;
-    margin: 0 auto;
-  }
-
 .on_scroll{
   position:absolute;
   top:0;
   color:white;
   background-color:#0000002f;
   height:680px;
-  width:730px;
-  display: flex;
+  width:735px;
   justify-content: center;
   align-items: center;
   font-size:20px;
-  z-index:9999;
-  transition: 1;
-  .press{
-    position:absolute;
-    top:320px;
-    left:270px;
-  }
+  z-index:999;
+  transition: 1s;
+
+}
+
+.leaflet_map{
+  height:100vh;
+  width:100%;
 }

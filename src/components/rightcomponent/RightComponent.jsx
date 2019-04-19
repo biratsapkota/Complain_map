@@ -1,7 +1,7 @@
 import React from 'react';
 import { Map as LeafletMap, TileLayer, Marker, Popup } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
-import styles from './styles/rightcomponent.module.scss'
+import styles from './styles/rightcomponent.module.scss';
 import 'react-leaflet-markercluster/dist/styles.min.css';
 
 
@@ -11,22 +11,19 @@ class RightComponent extends React.Component{
 		this.state = {
 			display_scroll:'none',
 			zoom:false,
+			width:'100%',
 		}
 		this.handleKeyDown = this.handleKeyDown.bind(this);
 	}
 
 	componentDidMount=()=> {
 		window.addEventListener('scroll',this.handleScroll);
-		setInterval(this.removeScroll, 5000);
+		setInterval(this.removeScroll, 2000);
 	}
-
-	componentWillUnmount() {
-		window.removeEventListener('scroll', this.handleScroll);
-	};
 
 	handleScroll=()=> {	
 		this.setState({
-			display_scroll:'block',
+			display_scroll:'flex',
 			zoom:false,
 		});
 	}
@@ -177,8 +174,8 @@ class RightComponent extends React.Component{
 				)
 			})
 		return(
-			<div onKeyPress={this.handleKeyDown}>
-				<LeafletMap center={center_position} zoom={9} maxZoom={20} style={{height:'100vh',width:'56vw'}} scrollWheelZoom={this.state.zoom} onScroll={this.hideScroll}>
+			<div onKeyPress={this.handleKeyDown} className={styles.leaflet_map}>
+				<LeafletMap center={center_position} zoom={9} maxZoom={20} style={{height:'100vh',width:this.state.width,zIndex:'99'}} scrollWheelZoom={this.state.zoom}>
 					<TileLayer
 						attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 						url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -187,7 +184,7 @@ class RightComponent extends React.Component{
 						{marker_display}
 					</MarkerClusterGroup>				
 				</LeafletMap>
-				<div style={{display:this.state.display_scroll}} className={styles.on_scroll} >
+				<div style={{display:this.state.display_scroll}} className={styles.on_scroll}   >
 					<div className={styles.press}>Press ctrl + to zoom</div>
 				</div>
 			</div>

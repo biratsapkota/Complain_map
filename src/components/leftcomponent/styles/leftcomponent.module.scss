@@ -1,6 +1,8 @@
 .left_component_wrapper{
     box-shadow: 21px 0px 5px 0px rgba(0,0,0,0.12);
     z-index:9999;
+    animation-name: moveInLeft;
+	animation-duration: 0.2s;
     .logo{
         height:100px;
         width:500px;
@@ -14,4 +16,29 @@
         padding:10px 50px;
         cursor: pointer;
     }
+    .logo{
+        height:70px;
+        width:70px;
+        position: absolute;
+        top:10px;
+        left:250px;
+    }
 }
+
+.toggle_icon{
+    cursor:pointer;
+    padding:30px;
+    z-index:-1;
+    color:#00A0FC;
+
+}
+
+@keyframes moveInLeft{
+	0% {
+	  transform: translateX(-200px);
+	}
+	100% {
+	  transform: translateX(0);
+	}
+  }
+  

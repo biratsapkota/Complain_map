@@ -4,6 +4,27 @@ import styles from './styles/leftcomponent.module.scss';
 import { NavLink } from 'react-router-dom';
 
 class LeftComponent extends React.Component {
+	constructor(){
+		super()
+		this.state={
+			display_left:'block',
+			display_icon:'none',
+		}
+	}
+
+	handleLeft=()=>{
+		this.setState({
+			display_left:'none',
+			display_icon:'block',
+		})
+	}
+
+	handleRight=()=>{
+		this.setState({
+			display_left:'block',
+			display_icon:'none',
+		})
+	}
 
 	render(){
 		let display = "";
@@ -31,15 +52,21 @@ class LeftComponent extends React.Component {
 		}
 
 		return(
-			<div className={styles.left_component_wrapper}>
-				<NavLink to="/report">
-					<img 
-						src="https://res.cloudinary.com/dpy0mkwsp/image/upload/v1547354763/CHMimage/saas.svg" height='100px' 
-						width="100px" 
-						alt="companylogo" 
-						className={styles.logo} 
-					/>
-				</NavLink>
+			<div>
+				<div className={styles.toggle_icon} style={{display:this.state.display_icon}} onClick={this.handleRight}>
+					<i className="fas fa-chevron-right"></i>
+				</div>
+				<div className={styles.left_component_wrapper} style={{display:this.state.display_left}}>
+					<NavLink to="/report">
+						<img
+							src="https://res.cloudinary.com/dpy0mkwsp/image/upload/v1547354763/CHMimage/saas.svg" 
+							alt="companylogo" 
+							className={styles.logo} 
+						/>
+					</NavLink>
+				<div className={styles.toggle_icon} onClick={this.handleLeft}>
+					<i className="fas fa-chevron-left" />
+				</div>
 				<div className={styles.tab_wrapper}>
 					<div style={ all_wrapper } className={styles.tab} onClick={activateTab.bind(this,1)}>All</div>
 					<div style={ bara_wrapper } className={styles.tab} onClick={activateTab.bind(this,2)}>Bara</div>
@@ -47,9 +74,11 @@ class LeftComponent extends React.Component {
 					<div style={ godawari_wrapper } className={styles.tab} onClick={activateTab.bind(this,4)}>Godawari</div>
 				</div>
 
-				{display}
+					{display}
 
+				</div>
 			</div>
+			
 		)
 	}
 };
